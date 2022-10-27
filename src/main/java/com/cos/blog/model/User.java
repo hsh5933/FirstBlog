@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@DynamicInsert //인서트할때 Null인값을 제외시킨다
 public class User {
     @Id //primary key
     //프로젝트에서 연결된 DB의 넘버링 전략을 따라감
@@ -30,8 +32,11 @@ public class User {
     @Column(nullable = false,length = 50)
     private String email;
 
-    @ColumnDefault("'user'")
-    private String role; //Enum을쓰는게 좋다. //admin,user,manager
+
+    //@ColumnDefault("user")
+    //DB는 RoleType이라는게 없다.
+    @Enumerated(EnumType.STRING)
+    private RoleType role; //Enum을쓰는게 좋다. //admin,user,manager
 
     @CreationTimestamp // 시간이 자동으로 입력되는 어노테이션
     private Timestamp createDate;
