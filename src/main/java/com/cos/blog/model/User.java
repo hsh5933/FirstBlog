@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; //시퀀스 auto_increment
 
-    @Column(nullable = false,length = 20) //null이될수없고 길이가 20
+    @Column(nullable = false,length = 20,unique = true) //null이될수없고 길이가 20, unique=true는 아이디 중복불가하게끔
     private String username; //아이디
 
     @Column(nullable = false,length = 100)

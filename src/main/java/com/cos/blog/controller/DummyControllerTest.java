@@ -23,6 +23,17 @@ public class DummyControllerTest {
     @Autowired //의존성주입(DI)
     private UserRepository userRepository;
 
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable int id){
+       try{
+           userRepository.deleteById(id);
+       }catch (Exception e){
+           return "삭제에 실패하셨습니다.";
+       }
+        return "삭제되었습니다. id : "+id;
+    }
+
+
     // email,password 받아야됨
     @Transactional //save메소드 사용안해도 업데이트가 가능하게한다.
     @PutMapping("/dummy/user/{id}")
