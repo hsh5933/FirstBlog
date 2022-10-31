@@ -7,17 +7,17 @@ pageEncoding="UTF-8"%>
     <form>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" placeholder="Enter Username" id="username">
+        <input type="text" name="username" class="form-control" placeholder="Enter Username" id="username">
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" placeholder="Enter password" id="password">
+        <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
       </div>
 
       <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" placeholder="Enter email" id="email">
+              <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
             </div>
 
       <div class="form-group form-check">
@@ -27,9 +27,9 @@ pageEncoding="UTF-8"%>
       </div>
     </form>
     <button id="btn-save" class="btn btn-primary">회원가입</button>
-</div>
 
-<script src="/blog/js/user.js"></script>
+</div>
+<script src="/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 
 

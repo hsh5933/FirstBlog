@@ -27,7 +27,6 @@ public class Board {
     @Lob //대용량 데이터를 사용할때 씀
     private String content;
 
-    @ColumnDefault("0")
     private int count; //조회수
 
     @CreationTimestamp //데이터가 생성될때 자동으로 업데이트
