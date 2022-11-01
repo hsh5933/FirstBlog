@@ -24,6 +24,5 @@ public class PrincipalDetailService implements UserDetailsService {
             return new UsernameNotFoundException("해당 사용자를 찾을수 없습니다."+username);
         });
         return new PrincipalDetail(principal); //시큐리티세션에 유저정보저장
-
     }
 }
