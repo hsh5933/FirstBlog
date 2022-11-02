@@ -1,9 +1,6 @@
 package com.cos.blog.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -12,7 +9,8 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity //User클래스가 MySql에 테이블이 생성이된다.
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,7 +21,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; //시퀀스 auto_increment
 
-    @Column(nullable = false,length = 20,unique = true) //null이될수없고 길이가 20, unique=true는 아이디 중복불가하게끔
+    @Column(nullable = false,length = 100,unique = true) //null이될수없고 길이가 20, unique=true는 아이디 중복불가하게끔
     private String username; //아이디
 
     @Column(nullable = false,length = 100)
@@ -37,6 +35,8 @@ public class User {
     //DB는 RoleType이라는게 없다.
     @Enumerated(EnumType.STRING)
     private RoleType role; //Enum을쓰는게 좋다. //admin,user,manager
+
+    private String oauth; //kakao, google 로그인확인
 
     @CreationTimestamp // 시간이 자동으로 입력되는 어노테이션
     private Timestamp createDate;

@@ -2,9 +2,12 @@ package com.cos.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Getter
+@Setter
 public class KakaoAccount {
 
 //    public Boolean profile_nickname_needs_agreement;

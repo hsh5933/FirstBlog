@@ -1,11 +1,13 @@
 package com.cos.blog.model;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Data
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

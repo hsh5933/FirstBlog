@@ -26,15 +26,15 @@ public class UserService {
 
     @Transactional
     public void 회원가입(User user){
-        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
-            return new IllegalArgumentException("회원찾기 실패");
-        });
+//        User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
+//            return new IllegalArgumentException("회원찾기 실패");
+//        });
         String rawPassword = user.getPassword();//1234원문
         String encPassword = encoder.encode(rawPassword); //해쉬로 바뀜
-        persistance.setPassword(encPassword);
-        persistance.setEmail(user.getEmail());
+        user.setPassword(encPassword);
+        user.setRole(RoleType.USER);
 
-        userRepository.save(persistance);
+        userRepository.save(user);
     }
 
     @Transactional
@@ -44,12 +44,27 @@ public class UserService {
         User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
             return new IllegalArgumentException("회원찾기 실패");
         });
-        String rawPassword = user.getPassword();
-        String encPassword = encoder.encode(rawPassword);
-        persistance.setPassword(encPassword);
-        persistance.setEmail(user.getEmail());
+
+        //validation체크=>oauth필드에 값이 없으면 수정가능
+        if(persistance.getOauth() == null || persistance.getOauth().equals("")) {
+            String rawPassword = user.getPassword();
+            String encPassword = encoder.encode(rawPassword);
+            persistance.setPassword(encPassword);
+            persistance.setEmail(user.getEmail());
+        }
 
 
+
+    }
+
+    @Transactional(readOnly = true)
+    public User 회원찾기(String username) {
+
+        User user = userRepository.findByUsername(username).orElseGet(()->{
+            return new User();
+        });
+
+        return user;
     }
 
 
